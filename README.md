@@ -4,9 +4,9 @@
 Niccolo Abate<br />
 Elizabeth Arnold<br />
 Daren Bartolucci<br />
-Dylan De La Cerda<br />
 Lee Coronilia<br />
 Jeremy Dahlberg<br />
+Dylan De La Cerda<br />
 Noah Hart<br />
 Newton Novak<br />
 Nelson Pham<br />
