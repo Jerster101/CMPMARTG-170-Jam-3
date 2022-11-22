@@ -389,11 +389,11 @@ public class TacticsMove : MonoBehaviour
 
     public void BeginTurn()
     {
-        //Elizabeth- since TacticsMove.BeginTurn() and Character.BeginTurn() can call each other, trying to prevent loops
-        //Is it inefficient? probably. but we can make it better later
+
+        //presently for testing reasons player TacticsMove doesnt get its turn until the player selects an enemy target
+        //See GenericPlayer.AcquireTarget();
         if(!turn) {
-            turn = true;
-            thisUnit.BeginTurn(); 
+            turn = true; 
         }
         
     }
@@ -402,7 +402,6 @@ public class TacticsMove : MonoBehaviour
     {
         if(turn) {
             turn = false;
-            thisUnit.EndTurn();  
         }
         
     }

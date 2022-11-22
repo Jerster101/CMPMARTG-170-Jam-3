@@ -4423,10 +4423,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 516301155}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05be4e39b5c095149a946380e6a36282, type: 3}
+  m_Script: {fileID: 11500000, guid: a612de49047d6c644b029fab3c9f1c9d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Witch
+  name: Wizard
   magic: 5
   strength: 5
   health: 5
@@ -6095,7 +6095,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 741791229}
-  m_LocalRotation: {x: -0, y: 0.5681042, z: -0, w: 0.82295656}
+  m_LocalRotation: {x: -0, y: -0.11775628, z: -0, w: 0.9930426}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -12179,7 +12179,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1427575005}
-  m_LocalRotation: {x: -0, y: -0.755972, z: -0, w: 0.65460396}
+  m_LocalRotation: {x: -0, y: 0.3159238, z: -0, w: 0.9487846}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

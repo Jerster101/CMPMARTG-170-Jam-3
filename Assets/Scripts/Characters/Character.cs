@@ -7,7 +7,7 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     //Allows character and move scripts to talk to each other when attached to the same obj
-    private TacticsMove move;
+    protected TacticsMove move;
     public string name = "Default";
 
     //stats - we can change this later
@@ -16,13 +16,11 @@ public class Character : MonoBehaviour
 
     [SerializeField] int health = 5;
     [SerializeField] float baseAccuracy = 0.8f; //Default chance to hit with attacks
-    private bool isDead = false;
-    private bool turn = false;
+    protected bool isDead = false;
+    protected bool turn = false;
     protected int attackStat; //easy way to change which stat is used for damage calculations
 
     public Character target; //use this to deal damage to other characters 
-
-    protected string targetableTag = "Character";
 
     
 
@@ -34,6 +32,8 @@ public class Character : MonoBehaviour
         move = GetComponent<TacticsMove>();
 
         TurnManager.AddUnit(this);
+
+        Debug.Log("Added player to turnmanager");
 
         gameObject.tag = "Character";
         
@@ -47,7 +47,6 @@ public class Character : MonoBehaviour
                 Debug.Log(name + " is dead, ending turn");
                 EndTurn();
             }
-
         }
         
     }
@@ -64,36 +63,18 @@ public class Character : MonoBehaviour
         if(health <= 0) {isDead = true;}
     }
 
-    //sets the current target to whatever character is clicked on
-    public void AcquireTarget() {
-        if(Input.GetMouseButtonUp(0)) {
-            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
-            RaycastHit hit;
-            if(Physics.Raycast(ray, out hit)) {
-                if (hit.collider.tag == targetableTag) {
-                    target = hit.collider.GetComponent<Character>();
-                    Debug.Log( name + " switches targets to " + target.name);
-                }
-            }
-        }
-
-    }
-
-    public void BeginTurn()
+    public virtual void BeginTurn()
     {
-        //Elizabeth- since TacticsMove.BeginTurn() and Character.BeginTurn() can call each other, trying to prevent loops
-        //Is it inefficient? probably. but we can make it better later
         if(!turn) {
-            turn = true;
-            move.BeginTurn(); 
+            turn = true; 
+            move.BeginTurn();
         }
 
-        Debug.Log(name + "begins their turn");
+        Debug.Log(name + " begins their turn");
         
     }
 
-    public void EndTurn()
+    public virtual void EndTurn()
     {
         if(turn) {
             turn = false;

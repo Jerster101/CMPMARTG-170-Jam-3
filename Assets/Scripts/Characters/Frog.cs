@@ -2,16 +2,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Frog : Character
+public class Frog : GenericPlayer
 {
     // Start is called before the first frame update
     void Start()
     {
-        Init();
-
-        gameObject.tag = "Player";
-
-        targetableTag = "Enemy";
+        PCInit();
         
     }
 

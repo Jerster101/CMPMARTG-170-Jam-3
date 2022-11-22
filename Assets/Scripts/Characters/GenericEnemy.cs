@@ -10,13 +10,10 @@ public class GenericEnemy : Character
         Init();
 
         gameObject.tag = "Enemy";
-        targetableTag = "Player";
-        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 }
