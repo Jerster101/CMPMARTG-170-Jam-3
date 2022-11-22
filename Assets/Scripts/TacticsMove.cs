@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class TacticsMove : MonoBehaviour 
 {
+    //Elizabeth- allowing the move script and character script to talk to each other when attached to the same obj
+    private Character thisUnit;
     public bool turn = false;
 
     List<Tile> selectableTiles = new List<Tile>();
@@ -36,7 +38,7 @@ public class TacticsMove : MonoBehaviour
 
         halfHeight = GetComponent<Collider>().bounds.extents.y;
 
-        TurnManager.AddUnit(this);
+        thisUnit = GetComponent<Character>();
     }
 
     public void GetCurrentTile()
@@ -387,11 +389,21 @@ public class TacticsMove : MonoBehaviour
 
     public void BeginTurn()
     {
-        turn = true;
+        //Elizabeth- since TacticsMove.BeginTurn() and Character.BeginTurn() can call each other, trying to prevent loops
+        //Is it inefficient? probably. but we can make it better later
+        if(!turn) {
+            turn = true;
+            thisUnit.BeginTurn(); 
+        }
+        
     }
 
     public void EndTurn()
     {
-        turn = false;
+        if(turn) {
+            turn = false;
+            thisUnit.EndTurn();  
+        }
+        
     }
 }

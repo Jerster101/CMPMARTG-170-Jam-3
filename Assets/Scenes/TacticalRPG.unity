@@ -4180,6 +4180,7 @@ GameObject:
   - component: {fileID: 516301158}
   - component: {fileID: 516301157}
   - component: {fileID: 516301156}
+  - component: {fileID: 516301161}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -4286,6 +4287,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &516301161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516301155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05be4e39b5c095149a946380e6a36282, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Witch
+  magic: 5
+  strength: 5
+  health: 5
+  baseAccuracy: 0.8
+  target: {fileID: 0}
 --- !u!1 &551956329
 GameObject:
   m_ObjectHideFlags: 0
@@ -5431,6 +5450,7 @@ GameObject:
   - component: {fileID: 728376139}
   - component: {fileID: 728376138}
   - component: {fileID: 728376142}
+  - component: {fileID: 728376143}
   m_Layer: 0
   m_Name: NPC
   m_TagString: Untagged
@@ -5537,6 +5557,24 @@ MonoBehaviour:
   moveSpeed: 2
   jumpVelocity: 4.5
   actualTargetTile: {fileID: 0}
+--- !u!114 &728376143
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 728376136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 302d7cdb94124c649b892c4692eec2b4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  name: Enemy
+  magic: 5
+  strength: 5
+  health: 5
+  baseAccuracy: 0.8
+  target: {fileID: 0}
 --- !u!1 &735271513
 GameObject:
   m_ObjectHideFlags: 0

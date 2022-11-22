@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MossDog : Character
+public class GenericEnemy : Character
 {
     // Start is called before the first frame update
     void Start()
     {
         Init();
 
-        gameObject.tag = "Player";
-        targetableTag = "Enemy";
+        gameObject.tag = "Enemy";
+        targetableTag = "Player";
+        
     }
 
     // Update is called once per frame
