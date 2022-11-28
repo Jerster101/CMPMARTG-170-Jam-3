@@ -13,17 +13,15 @@ public class Character : MonoBehaviour
     //stats - we can change this later
     [SerializeField] int magic = 5;
     [SerializeField] int strength = 5;
-
     [SerializeField] int health = 5;
-    [SerializeField] float baseAccuracy = 0.8f; //Default chance to hit with attacks
+    [SerializeField] float baseAccuracy = 0.8f; //Default chance to hit with attacks    
+    [SerializeField] int basicAttackRange = 1;
+    [SerializeField] int specialAttackRange = 2;
     protected bool isDead = false;
     protected bool turn = false;
     protected int attackStat; //easy way to change which stat is used for damage calculations
 
-    public Character target; //use this to deal damage to other characters 
-
-    
-
+    public Character target; //use this to store other characters to target with attacks
 
     //use for initialization
     protected void Init()
@@ -56,6 +54,10 @@ public class Character : MonoBehaviour
         if(Random.value <= baseAccuracy) {
             target.TakeDamage(attackStat);
         }
+    }
+
+    virtual protected void SpecialAttack() {
+        Debug.Log(name + " uses Special Attack targeting " + target.name);
     }
 
     public void TakeDamage(int damage) {

@@ -10,10 +10,10 @@ public class HUDManager : MonoBehaviour
     GameObject HUD;
     [SerializeField]
     Button moveButton, basicButton, specialButton, secondSpecialButton, endTurnButton;
-    bool moveButtonActive = false;
-    bool basicAttackActive = false;
-    bool specialAttackActive = false;
-    bool secondSpecialAttackActive = false;
+    public bool moveButtonActive = false;
+    public bool basicAttackActive = false;
+    public bool specialAttackActive = false;
+    public bool secondSpecialAttackActive = false;
 
     void Start() {
         moveButton.onClick.AddListener(MoveButton);
