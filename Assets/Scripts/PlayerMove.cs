@@ -23,7 +23,7 @@ public class PlayerMove : TacticsMove
 
         if (!moving)
         {
-            FindSelectableTiles();
+            FindSelectableTiles(move);
             CheckMouse();
         }
         else

@@ -6,8 +6,9 @@ public class GenericPlayer : Character
 {
     public GameObject menu;
     protected HUDManager hud;
-    public bool isActiveCharacter = true; //when we are swapping between player characters 
+    public bool isFocusCharacter = true; //when we are swapping between player characters 
     protected string specialTargetTag = "Enemy";
+    protected string basicTargetTag = "Enemy";
 
     [SerializeField] int specialAttackCooldown = 2;
     private int currSpecialCooldown = 0;
@@ -33,26 +34,29 @@ public class GenericPlayer : Character
     {
         if(turn && isFocusCharacter) {
             if(hud.moveButtonActive && !moved) {
+                Debug.Log(name + " move mode");
                 move.BeginTurn();
                 moved = true;
             }
             else if(hud.basicAttackActive && !usedBasic) {
+                Debug.Log(name + " basic attack mode");
                 if(!selectedBasicTarget) {
-                    selectedBasicTarget = AcquireTarget(basicAttackRange, "Enemy");
+                    selectedBasicTarget = AcquireTarget(basicAttackRange, basicTargetTag);
                 }
                 else{
-                    BasicAttack(target);
+                    BasicAttack();
                     usedBasic = true;
                 }
 
             }
-            else if(specialAttackActive && currSpecialCooldown == 0) {
+            else if(hud.specialAttackActive && currSpecialCooldown == 0) {
+                Debug.Log(name + " special attack mode");
                 if(!selectedSpecialTarget) {
                     selectedSpecialTarget = AcquireTarget(specialAttackRange, specialTargetTag);
                 }
                 else{
-                    SpecialAttack(target);
-                    currSpecialCooldown = SpecialAttackCooldown;
+                    SpecialAttack();
+                    currSpecialCooldown = specialAttackCooldown;
                 }
             }
         }
@@ -68,6 +72,7 @@ public class GenericPlayer : Character
             moved = false;
             usedBasic = false;
             currSpecialCooldown -= 1;
+            Debug.Log("reset booleans");
 
             if(currSpecialCooldown < 0) {
                 currSpecialCooldown = 0;
@@ -79,6 +84,8 @@ public class GenericPlayer : Character
     //the boolean return is to tell the attack functions whether the attack has successfully obtained a valid target or not
 
     public bool AcquireTarget(int range, string desiredTarget){
+        move.FindSelectableTiles(range);
+
         if (Input.GetMouseButtonUp(0))
         {
             Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
@@ -86,8 +93,11 @@ public class GenericPlayer : Character
             RaycastHit hit;
             if (Physics.Raycast(ray, out hit))
             {
-                if (hit.collider.tag == desiredTarget)
+                
+                if (hit.collider.tag == desiredTarget &&
+                hit.collider.GetComponent<TacticsMove>().currentTile.selectable)
                 {
+
                     target = hit.collider.GetComponent<Character>();
                     Debug.Log(name + " switches targets to " + target.name);
                     return true;
@@ -97,7 +107,8 @@ public class GenericPlayer : Character
                 Debug.Log("AcquireTarget failed to find target this frame");
                 return false;
             }
+            return false;
         }
-
+        return false;
     }
 }

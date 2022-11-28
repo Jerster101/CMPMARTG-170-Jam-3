@@ -12,7 +12,7 @@ public class TacticsMove : MonoBehaviour
     GameObject[] tiles;
 
     Stack<Tile> path = new Stack<Tile>();
-    Tile currentTile;
+    public Tile currentTile;
 
     public bool moving = false;
     public int move = 5;
@@ -71,7 +71,7 @@ public class TacticsMove : MonoBehaviour
         }
     }
 
-    public void FindSelectableTiles()
+    public void FindSelectableTiles(int range)
     {
         ComputeAdjacencyLists(jumpHeight, null);
         GetCurrentTile();
@@ -89,7 +89,7 @@ public class TacticsMove : MonoBehaviour
             selectableTiles.Add(t);
             t.selectable = true;
 
-            if (t.distance < move)
+            if (t.distance < range)
             {
                 foreach (Tile tile in t.adjacencyList)
                 {
@@ -159,7 +159,7 @@ public class TacticsMove : MonoBehaviour
             RemoveSelectableTiles();
             moving = false;
 
-            TurnManager.EndTurn();
+            EndTurn();
         }
     }
 
@@ -390,8 +390,6 @@ public class TacticsMove : MonoBehaviour
     public void BeginTurn()
     {
 
-        //presently for testing reasons player TacticsMove doesnt get its turn until the player selects an enemy target
-        //See GenericPlayer.AcquireTarget();
         if(!turn) {
             turn = true; 
         }

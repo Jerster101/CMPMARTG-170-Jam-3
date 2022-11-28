@@ -77,6 +77,10 @@ public class HUDManager : MonoBehaviour
 
     private void EndButton () {
         Debug.Log("END TURN button pressed");
+        TurnManager.EndTurn();
+        moveButtonActive = false;
+        specialAttackActive = false;
+        basicAttackActive = false;
     }
 
 }

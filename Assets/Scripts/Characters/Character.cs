@@ -15,8 +15,8 @@ public class Character : MonoBehaviour
     [SerializeField] int strength = 5;
     [SerializeField] int health = 5;
     [SerializeField] float baseAccuracy = 0.8f; //Default chance to hit with attacks    
-    [SerializeField] int basicAttackRange = 1;
-    [SerializeField] int specialAttackRange = 2;
+    [SerializeField] protected int basicAttackRange = 1;
+    [SerializeField] protected int specialAttackRange = 2;
     protected bool isDead = false;
     protected bool turn = false;
     protected int attackStat; //easy way to change which stat is used for damage calculations
@@ -79,8 +79,7 @@ public class Character : MonoBehaviour
     public virtual void EndTurn()
     {
         if(turn) {
-            turn = false;
-            move.EndTurn();  
+            turn = false;  
         }
 
         Debug.Log(name + " ends their turn");

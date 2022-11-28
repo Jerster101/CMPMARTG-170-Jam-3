@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class GenericEnemy : Character
 {
+    protected bool moved = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,5 +16,20 @@ public class GenericEnemy : Character
     // Update is called once per frame
     void Update()
     {
+        if(turn) {
+            if(!moved) {
+                moved = true;
+                move.BeginTurn();
+            }
+        }
+        //add any other bools for if it took other actions here so it will end its turn if all the bools are true
+        if(moved) {
+            TurnManager.EndTurn();
+        }
+    }
+
+    public override void BeginTurn(){
+        moved = false;
+        if (!turn) {turn = true;}
     }
 }
