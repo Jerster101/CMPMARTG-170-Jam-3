@@ -6,8 +6,10 @@ using TMPro;
 
 public class HUDManager : MonoBehaviour
 {
-    //change if my debug info gets overwhelming
+    #pragma warning disable 0162
+    //turn UI debug info on/off
     const bool SHOWDEBUGINFO = false;
+    
 
     [SerializeField]
     GameObject HUD;
