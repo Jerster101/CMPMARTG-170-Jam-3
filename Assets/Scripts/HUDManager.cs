@@ -6,6 +6,9 @@ using TMPro;
 
 public class HUDManager : MonoBehaviour
 {
+    //change if my debug info gets overwhelming
+    const bool SHOWDEBUGINFO = false;
+
     [SerializeField]
     GameObject HUD;
     [SerializeField]
@@ -14,6 +17,8 @@ public class HUDManager : MonoBehaviour
     public bool basicAttackActive = false;
     public bool specialAttackActive = false;
     public bool secondSpecialAttackActive = false;
+
+    bool menuOpen = true;
 
     void Start() {
         moveButton.onClick.AddListener(MoveButton);
@@ -25,62 +30,64 @@ public class HUDManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.F)) {
-            if (HUD.activeInHierarchy) {
-                HUD.SetActive(false);
-            }
-            else {
-                HUD.SetActive(true);
-            }
+        if (Input.GetKey(KeyCode.Mouse1) && !menuOpen)
+        {
+            CancelAction();
         }
     }
 
     private void MoveButton () {
-        if (moveButtonActive) {
-            moveButtonActive = false;
-        }
-        else {
-            moveButtonActive = true;
-        }
-        Debug.Log("MOVE button pressed, is now " + moveButtonActive);
+        moveButtonActive = true;
+        if (SHOWDEBUGINFO) Debug.Log("MOVE button pressed, is now " + moveButtonActive);
+        HideMenu();
     }
 
     private void BasicButton () {
-        if (basicAttackActive) {
-            basicAttackActive = false;
-        }
-        else {
-            basicAttackActive = true;
-        }
-        Debug.Log("BASIC ATTACK button pressed, is now " + basicAttackActive);
+        basicAttackActive = true;
+        if (SHOWDEBUGINFO) Debug.Log("BASIC ATTACK button pressed, is now " + basicAttackActive);
+        HideMenu();
     }
 
     private void SpecialButton () {
-        if (specialAttackActive) {
-            specialAttackActive = false;
-        }
-        else {
-            specialAttackActive = true;
-        }
-        Debug.Log("SPECIAL ATTACK button pressed, is now " + specialAttackActive);
+        specialAttackActive = true;
+        if (SHOWDEBUGINFO) Debug.Log("SPECIAL ATTACK button pressed, is now " + specialAttackActive);
+        HideMenu();
     }
 
     private void SecondSpecialButton () {
-        if (secondSpecialAttackActive) {
-            secondSpecialAttackActive = false;
-        }
-        else {
-            secondSpecialAttackActive = true;
-        }
-        Debug.Log("SECOND SPECIAL ATTACK button pressed, is now " + secondSpecialAttackActive);
+        secondSpecialAttackActive = true;
+        if (SHOWDEBUGINFO) Debug.Log("SECOND SPECIAL ATTACK button pressed, is now " + secondSpecialAttackActive);
+        HideMenu();
     }
 
     private void EndButton () {
-        Debug.Log("END TURN button pressed");
-        TurnManager.EndTurn();
+        if (SHOWDEBUGINFO) Debug.Log("END TURN button pressed");
         moveButtonActive = false;
-        specialAttackActive = false;
         basicAttackActive = false;
+        specialAttackActive = false;
+        secondSpecialAttackActive = false;
+        TurnManager.EndTurn();
+    }
+
+    private void HideMenu() {
+        menuOpen = false;
+        HUD.SetActive(false);
+        if (SHOWDEBUGINFO) Debug.Log("Button pushed, HUD hidden");
+    }
+
+    private void CancelAction() {
+        moveButtonActive = false;
+        basicAttackActive = false;
+        specialAttackActive = false;
+        secondSpecialAttackActive = false;
+        if (SHOWDEBUGINFO) Debug.Log("Action canceled, all values set to false");
+        ShowMenu();
+    }
+
+    private void ShowMenu() {
+        menuOpen = true;
+        HUD.SetActive(true);
+        if (SHOWDEBUGINFO) Debug.Log("HUD shown");
     }
 
 }

@@ -24,6 +24,7 @@ public class GenericEnemy : Character
         }
         //add any other bools for if it took other actions here so it will end its turn if all the bools are true
         if(moved) {
+            Debug.Log("Problem?");
             TurnManager.EndTurn();
         }
     }

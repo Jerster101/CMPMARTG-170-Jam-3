@@ -45,9 +45,11 @@ public class TurnManager : MonoBehaviour
 
     public static void EndTurn()
     {
+        Debug.Log("beginnig");
         Character unit = turnTeam.Dequeue();
         unit.EndTurn();
 
+Debug.Log("middle");
         if (turnTeam.Count > 0)
         {
             StartTurn();
@@ -58,6 +60,7 @@ public class TurnManager : MonoBehaviour
             turnKey.Enqueue(team);
             InitTeamTurnQueue();
         }
+        Debug.Log("end");
     }
 
     public static void AddUnit(Character unit)
