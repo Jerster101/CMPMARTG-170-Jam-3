@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -5037,6 +5037,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turn: 0
+  currentTile: {fileID: 0}
   moving: 0
   move: 5
   jumpHeight: 2
@@ -5140,7 +5141,12 @@ MonoBehaviour:
   strength: 5
   health: 5
   baseAccuracy: 0.8
+  basicAttackRange: 1
+  specialAttackRange: 2
   target: {fileID: 0}
+  menu: {fileID: 620892205}
+  isFocusCharacter: 1
+  specialAttackCooldown: 2
 --- !u!1 &551956329
 GameObject:
   m_ObjectHideFlags: 0
@@ -5695,6 +5701,10 @@ MonoBehaviour:
   specialButton: {fileID: 817425422}
   secondSpecialButton: {fileID: 1916311659}
   endTurnButton: {fileID: 651286056}
+  moveButtonActive: 0
+  basicAttackActive: 0
+  specialAttackActive: 0
+  secondSpecialAttackActive: 0
 --- !u!1 &651286055
 GameObject:
   m_ObjectHideFlags: 0
@@ -6700,6 +6710,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turn: 0
+  currentTile: {fileID: 0}
   moving: 0
   move: 2
   jumpHeight: 2
@@ -6723,6 +6734,8 @@ MonoBehaviour:
   strength: 5
   health: 5
   baseAccuracy: 0.8
+  basicAttackRange: 1
+  specialAttackRange: 2
   target: {fileID: 0}
 --- !u!1 &735271513
 GameObject:
@@ -6990,7 +7003,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 741791229}
-  m_LocalRotation: {x: -0, y: 0.17397892, z: -0, w: 0.98474944}
+  m_LocalRotation: {x: -0, y: 0.3079151, z: -0, w: 0.95141387}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -13927,7 +13940,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1427575005}
-  m_LocalRotation: {x: -0, y: 0.93552095, z: -0, w: 0.35327145}
+  m_LocalRotation: {x: -0, y: -0.12923194, z: -0, w: 0.9916144}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -22406,6 +22419,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turn: 0
+  currentTile: {fileID: 0}
   moving: 0
   move: 4
   jumpHeight: 2
@@ -22621,6 +22635,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   turn: 0
+  currentTile: {fileID: 0}
   moving: 0
   move: 2
   jumpHeight: 2
