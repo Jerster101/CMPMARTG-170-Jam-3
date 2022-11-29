@@ -42,7 +42,7 @@ public class GenericPlayer : Character
             else if(hud.basicAttackActive && !usedBasic) {
                // Debug.Log(name + " basic attack mode");
                 if(!selectedBasicTarget) {
-                    selectedBasicTarget = AcquireTarget(basicAttackRange, basicTargetTag);
+                    selectedBasicTarget = AcquireTarget(basicAttackRange, basicTargetTag, () => BasicAttackTargetingFunction());
                 }
                 else{
                     BasicAttack();
@@ -53,7 +53,7 @@ public class GenericPlayer : Character
             else if(hud.specialAttackActive && currSpecialCooldown == 0) {
                 Debug.Log(name + " special attack mode");
                 if(!selectedSpecialTarget) {
-                    selectedSpecialTarget = AcquireTarget(specialAttackRange, specialTargetTag);
+                    selectedSpecialTarget = AcquireTarget(specialAttackRange, specialTargetTag, () => BasicAttackTargetingFunction());
                 }
                 else{
                     SpecialAttack();
@@ -82,18 +82,23 @@ public class GenericPlayer : Character
         }
     }
 
-    //the boolean return is to tell the attack functions whether the attack has successfully obtained a valid target or not
+     virtual protected Collider[] BasicAttackTargetingFunction()
+    {
+        Vector3 halfExtents = new Vector3(0.5f, 4, 0.5f);
+        return Physics.OverlapBox(transform.position, halfExtents, Quaternion.Euler(0, 45, 0));
+    }
 
-    public bool AcquireTarget(int range, string desiredTarget){
-        Vector3 halfExtents = new Vector3(range, 4, range);
-        Collider[] colliders = Physics.OverlapBox(transform.position, halfExtents);
+    //the boolean return is to tell the attack functions whether the attack has successfully obtained a valid target or not
+    public delegate Collider[] TargetingFunction();
+    public bool AcquireTarget(int range, string desiredTarget, TargetingFunction targetingFunction)
+    {
+        Collider[] colliders = targetingFunction();
 
         foreach (Collider item in colliders)
         {
             Tile tile = item.GetComponent<Tile>();
             if (tile != null)
             {
-                Debug.Log("attackable set");
                 tile.attackable = true;
             }
         }
