@@ -33,4 +33,12 @@ public class GenericEnemy : Character
         moved = false;
         if (!turn) {turn = true;}
     }
+
+    public override void EndTurn()
+    {
+        if (moved)
+            moved = false;
+
+        base.EndTurn();
+    }
 }
