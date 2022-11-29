@@ -10,7 +10,7 @@ public class GenericEnemy : Character
     protected bool triedTargeting = false;
     protected bool waiting = false;
     // Start is called before the first frame update
-    void Start()
+    virtual protected void Start()
     {
         Init();
 
@@ -18,7 +18,7 @@ public class GenericEnemy : Character
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
         if(turn) {
             if(!moved) {
@@ -68,7 +68,7 @@ public class GenericEnemy : Character
 
     virtual protected Collider[] BasicAttackTargetingFunction()
     {
-        Vector3 halfExtents = new Vector3(1.2f, 4, 1.2f);
+        Vector3 halfExtents = new Vector3(0.5f, 4, 0.5f);
         return Physics.OverlapBox(transform.position, halfExtents, Quaternion.Euler(0, 45, 0));
     }
 
