@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class GenericPlayer : Character
 {
@@ -39,7 +40,7 @@ public class GenericPlayer : Character
                 moved = true;
             }
             else if(hud.basicAttackActive && !usedBasic) {
-                Debug.Log(name + " basic attack mode");
+               // Debug.Log(name + " basic attack mode");
                 if(!selectedBasicTarget) {
                     selectedBasicTarget = AcquireTarget(basicAttackRange, basicTargetTag);
                 }
@@ -84,7 +85,18 @@ public class GenericPlayer : Character
     //the boolean return is to tell the attack functions whether the attack has successfully obtained a valid target or not
 
     public bool AcquireTarget(int range, string desiredTarget){
-        move.FindSelectableTiles(range);
+        Vector3 halfExtents = new Vector3(range, 4, range);
+        Collider[] colliders = Physics.OverlapBox(transform.position, halfExtents);
+
+        foreach (Collider item in colliders)
+        {
+            Tile tile = item.GetComponent<Tile>();
+            if (tile != null)
+            {
+                Debug.Log("attackable set");
+                tile.attackable = true;
+            }
+        }
 
         if (Input.GetMouseButtonUp(0))
         {
@@ -95,7 +107,7 @@ public class GenericPlayer : Character
             {
                 
                 if (hit.collider.tag == desiredTarget &&
-                hit.collider.GetComponent<TacticsMove>().currentTile.selectable)
+                colliders.Contains(hit.collider))
                 {
 
                     target = hit.collider.GetComponent<Character>();
@@ -105,10 +117,11 @@ public class GenericPlayer : Character
             }
             else {
                 Debug.Log("AcquireTarget failed to find target this frame");
+
                 return false;
             }
-            return false;
         }
+
         return false;
     }
 }
