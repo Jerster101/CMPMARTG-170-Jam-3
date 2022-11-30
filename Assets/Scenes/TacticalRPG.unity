@@ -5165,17 +5165,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 516301155}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a612de49047d6c644b029fab3c9f1c9d, type: 3}
+  m_Script: {fileID: 11500000, guid: 7465eb0d389255443b168ddeb626e928, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  name: Wizard
+  move: {fileID: 0}
+  name: Frog
   magic: 5
   strength: 5
   health: 5
+  healing: 2
   baseAccuracy: 0.8
   basicAttackRange: 1
-  specialAttackRange: 2
+  specialAttackRange: 4
   target: {fileID: 0}
+  tileTarget: {fileID: 0}
   menu: {fileID: 620892205}
   isFocusCharacter: 1
   specialAttackCooldown: 2
@@ -6770,14 +6773,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f468463c64a2f7e4a8ca3c22bc71dba3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  move: {fileID: 0}
   name: Croc
   magic: 5
   strength: 5
   health: 5
+  healing: 2
   baseAccuracy: 0.8
   basicAttackRange: 1
   specialAttackRange: 2
   target: {fileID: 0}
+  tileTarget: {fileID: 0}
 --- !u!1 &735271513
 GameObject:
   m_ObjectHideFlags: 0
@@ -7046,7 +7052,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 741791229}
-  m_LocalRotation: {x: -0, y: -0.48832783, z: -0, w: 0.8726603}
+  m_LocalRotation: {x: -0, y: -0.17169717, z: -0, w: 0.98514986}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -9522,14 +9528,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 77bd6e581ce630044bce631290ad5fb6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  move: {fileID: 0}
   name: Deer
   magic: 5
   strength: 5
   health: 5
+  healing: 2
   baseAccuracy: 0.8
   basicAttackRange: 1
   specialAttackRange: 2
   target: {fileID: 0}
+  tileTarget: {fileID: 0}
 --- !u!114 &911128112
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12514,7 +12523,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1229325453}
-  m_LocalRotation: {x: -0, y: -0.3268552, z: 0, w: 0.9450745}
+  m_LocalRotation: {x: -0, y: 0.3079151, z: 0, w: 0.95141387}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -14303,7 +14312,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1427575005}
-  m_LocalRotation: {x: -0, y: 0.12612, z: -0, w: 0.992015}
+  m_LocalRotation: {x: -0, y: -0.12923194, z: -0, w: 0.9916144}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0

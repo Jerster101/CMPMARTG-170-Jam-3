@@ -12,10 +12,11 @@ public class MossDog : GenericPlayer
     // Update is called once per frame
     void Update()
     {
-        public override void BasicAttack()
-        {
-            Debug.Log(name + " heals " + target.name);
-            target.HealDamage();
-        }
+        
+    }
+    protected override void BasicAttack()
+    {
+        Debug.Log(name + " heals " + target.name);
+        target.HealDamage(2);
     }
 }

@@ -53,7 +53,7 @@ public class GenericPlayer : Character
             else if(hud.specialAttackActive && currSpecialCooldown == 0) {
                 Debug.Log(name + " special attack mode");
                 if(!selectedSpecialTarget) {
-                    selectedSpecialTarget = AcquireTarget(specialAttackRange, specialTargetTag, () => BasicAttackTargetingFunction());
+                    selectedSpecialTarget = AcquireTarget(specialAttackRange, specialTargetTag, () => SpecialAttackTargetingFunction());
                 }
                 else{
                     SpecialAttack();
@@ -82,11 +82,19 @@ public class GenericPlayer : Character
         }
     }
 
-     virtual protected Collider[] BasicAttackTargetingFunction()
+    virtual protected Collider[] BasicAttackTargetingFunction()
     {
         Vector3 halfExtents = new Vector3(0.5f, 4, 0.5f);
         return Physics.OverlapBox(transform.position, halfExtents, Quaternion.Euler(0, 45, 0));
     }
+
+    virtual protected Collider[] SpecialAttackTargetingFunction()
+    {
+        Vector3 halfExtents = new Vector3(0.5f, 4, 0.5f);
+        return Physics.OverlapBox(transform.position, halfExtents, Quaternion.Euler(0, 45, 0));
+        Debug.Log("Targeting og");
+    }
+
 
     //the boolean return is to tell the attack functions whether the attack has successfully obtained a valid target or not
     public delegate Collider[] TargetingFunction();
@@ -115,7 +123,13 @@ public class GenericPlayer : Character
                 colliders.Contains(hit.collider))
                 {
 
-                    target = hit.collider.GetComponent<Character>();
+                    if(desiredTarget == "Player" || desiredTarget == "Enemy") {
+                        target = hit.collider.GetComponent<Character>();
+                    }
+                    else if (desiredTarget == "Tile") {
+                        Debug.Log("Found a tile");
+                        tileTarget = hit.collider.GetComponent<Tile>();
+                    }
                     Debug.Log(name + " switches targets to " + target.name);
                     return true;
                 }

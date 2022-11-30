@@ -7,7 +7,7 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     //Allows character and move scripts to talk to each other when attached to the same obj
-    protected TacticsMove move;
+    public TacticsMove move;
     public string name = "Default";
 
     //stats - we can change this later
@@ -23,6 +23,7 @@ public class Character : MonoBehaviour
     protected int attackStat; //easy way to change which stat is used for damage calculations
 
     public Character target; //use this to store other characters to target with attacks
+    public Tile  tileTarget;
 
     //use for initialization
     protected void Init()
@@ -35,6 +36,8 @@ public class Character : MonoBehaviour
         Debug.Log("Added player to turnmanager");
 
         gameObject.tag = "Character";
+
+        tileTarget = move.currentTile;
         
     }
 
