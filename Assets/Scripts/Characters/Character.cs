@@ -14,6 +14,7 @@ public class Character : MonoBehaviour
     [SerializeField] int magic = 5;
     [SerializeField] int strength = 5;
     [SerializeField] int health = 5;
+    [SerializeField] int healing = 2; // Variable used for Moss Dog's healing basic attack
     [SerializeField] float baseAccuracy = 0.8f; //Default chance to hit with attacks    
     [SerializeField] protected int basicAttackRange = 1;
     [SerializeField] protected int specialAttackRange = 2;
@@ -63,6 +64,11 @@ public class Character : MonoBehaviour
     public void TakeDamage(int damage) {
         health -= damage;
         if(health <= 0) {isDead = true;}
+    }
+
+    public void HealDamage(int healing)
+    {
+        health += healing;
     }
 
     public virtual void BeginTurn()
