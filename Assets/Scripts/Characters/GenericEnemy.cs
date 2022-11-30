@@ -60,6 +60,8 @@ public class GenericEnemy : Character
                     {
                         // Debug.Log("Target Found");
                         BasicAttack();
+                        if (Camera.main.gameObject.GetComponent<CameraShake>())
+                            Camera.main.gameObject.GetComponent<CameraShake>().StartShake();
                     }
                     
                     TurnManager.EndTurn();
