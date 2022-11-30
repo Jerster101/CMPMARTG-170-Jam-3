@@ -21,7 +21,9 @@ public class GenericEnemy : Character
     protected override void Update()
     {
         if(turn) {
+            // if haven't moved, then move
             if(!moved) {
+                // check if not currently moving
                 if (!move.moving)
                 {
                     if (!waiting)
@@ -94,6 +96,7 @@ public class GenericEnemy : Character
     {
         Collider[] colliders = targetingFunction();
 
+        // color tiles
         foreach (Collider item in colliders)
         {
             Tile tile = item.GetComponent<Tile>();
@@ -119,7 +122,7 @@ public class GenericEnemy : Character
             }
         }
 
-        // launch wait and select target coroutine
+        // launch wait and clean up tiles coroutine
         StartCoroutine(WaitAndCleanUpTargeting(colliders, 0.6f));
     }
 
