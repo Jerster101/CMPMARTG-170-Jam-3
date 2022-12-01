@@ -34,6 +34,7 @@ public class GenericPlayer : Character
     protected override void Update()
     {
         if(turn && isFocusCharacter) {
+            hud.EnableButtons();
             if(hud.moveButtonActive && !moved) {
                 Debug.Log(name + " move mode");
                 move.BeginTurn();
@@ -61,6 +62,7 @@ public class GenericPlayer : Character
                 }
             }
         }
+        if (!turn) hud.DisableButtons();
         
     }
 
