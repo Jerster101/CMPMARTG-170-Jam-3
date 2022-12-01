@@ -5049,6 +5049,7 @@ GameObject:
   - component: {fileID: 516301157}
   - component: {fileID: 516301156}
   - component: {fileID: 516301161}
+  - component: {fileID: 516301162}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -5163,7 +5164,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 516301155}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7465eb0d389255443b168ddeb626e928, type: 3}
   m_Name: 
@@ -5177,6 +5178,32 @@ MonoBehaviour:
   baseAccuracy: 0.8
   basicAttackRange: 1
   specialAttackRange: 4
+  target: {fileID: 0}
+  tileTarget: {fileID: 0}
+  menu: {fileID: 620892205}
+  isFocusCharacter: 1
+  specialAttackCooldown: 2
+--- !u!114 &516301162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 516301155}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05be4e39b5c095149a946380e6a36282, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  move: {fileID: 0}
+  name: Witch
+  magic: 5
+  strength: 5
+  health: 5
+  healing: 2
+  baseAccuracy: 0.8
+  basicAttackRange: 1
+  specialAttackRange: 3
   target: {fileID: 0}
   tileTarget: {fileID: 0}
   menu: {fileID: 620892205}

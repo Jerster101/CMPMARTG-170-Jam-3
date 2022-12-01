@@ -84,21 +84,21 @@ public class GenericPlayer : Character
 
     virtual protected Collider[] BasicAttackTargetingFunction()
     {
-        Vector3 halfExtents = new Vector3(0.5f, 4, 0.5f);
+        Vector3 halfExtents = new Vector3(basicAttackRange, 4, basicAttackRange);
         return Physics.OverlapBox(transform.position, halfExtents, Quaternion.Euler(0, 45, 0));
     }
 
     virtual protected Collider[] SpecialAttackTargetingFunction()
     {
-        Vector3 halfExtents = new Vector3(0.5f, 4, 0.5f);
+        Vector3 halfExtents = new Vector3(specialAttackRange, 4, specialAttackRange);
         return Physics.OverlapBox(transform.position, halfExtents, Quaternion.Euler(0, 45, 0));
         Debug.Log("Targeting og");
     }
 
-
-    //the boolean return is to tell the attack functions whether the attack has successfully obtained a valid target or not
     public delegate Collider[] TargetingFunction();
-    public bool AcquireTarget(int range, string desiredTarget, TargetingFunction targetingFunction)
+    //the boolean return is to tell the attack functions whether the attack has successfully obtained a valid target or not
+    
+    virtual public bool AcquireTarget(int range, string desiredTarget, TargetingFunction targetingFunction)
     {
         Collider[] colliders = targetingFunction();
 

@@ -11,11 +11,11 @@ public class Character : MonoBehaviour
     public string name = "Default";
 
     //stats - we can change this later
-    [SerializeField] int magic = 5;
-    [SerializeField] int strength = 5;
-    [SerializeField] int health = 5;
-    [SerializeField] int healing = 2; // Variable used for Moss Dog's healing basic attack
-    [SerializeField] float baseAccuracy = 0.8f; //Default chance to hit with attacks    
+    [SerializeField] protected int magic = 5;
+    [SerializeField] protected int strength = 5;
+    [SerializeField] protected int health = 5;
+    [SerializeField] protected int healing = 2; // Variable used for Moss Dog's healing basic attack
+    [SerializeField] protected float baseAccuracy = 0.8f; //Default chance to hit with attacks    
     [SerializeField] protected int basicAttackRange = 1;
     [SerializeField] protected int specialAttackRange = 2;
     protected bool isDead = false;
@@ -61,7 +61,10 @@ public class Character : MonoBehaviour
     }
 
     virtual protected void SpecialAttack() {
-        Debug.Log(name + " uses Special Attack targeting " + target.name);
+        Debug.Log(name + " uses Basic Attack targeting " + target.name);
+        if(Random.value <= baseAccuracy) {
+            target.TakeDamage(attackStat);
+        }
     }
 
     public void TakeDamage(int damage) {
