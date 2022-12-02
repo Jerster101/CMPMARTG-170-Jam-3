@@ -66,6 +66,15 @@ public class GenericPlayer : Character
         
     }
 
+    public override void RefreshActions()
+    {
+        selectedSpecialTarget = false;
+        selectedBasicTarget = false;
+        moved = false;
+        usedBasic = false;
+        Debug.Log("refreshed actions");
+    }
+
     public override void BeginTurn()
     {
         if(!turn) {
