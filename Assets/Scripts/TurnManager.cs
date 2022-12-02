@@ -10,6 +10,15 @@ public class TurnManager : MonoBehaviour
 
     static bool hasSortedTurnOrders = false;
 
+    static bool Won()
+    {
+        return units["Enemy"].Count == 0;
+    }
+    static bool Lost()
+    {
+        return units["Player"].Count == 0;
+    }
+
     static void SortTurnOrders()
     {
         foreach (var team in units.Values)
@@ -23,6 +32,15 @@ public class TurnManager : MonoBehaviour
         foreach (var team in units.Values)
         {
             team.Remove(unit);
+        }
+
+        if (Won())
+        {
+            // do stuff
+        }
+        if (Lost())
+        {
+            // do stuff
         }
     }
 
