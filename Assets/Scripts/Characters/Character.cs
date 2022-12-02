@@ -19,6 +19,8 @@ public class Character : MonoBehaviour
     [SerializeField] protected float baseAccuracy = 0.8f; //Default chance to hit with attacks    
     [SerializeField] protected int basicAttackRange = 1;
     [SerializeField] protected int specialAttackRange = 2;
+    [SerializeField] protected CameraShake basicAttackShake;
+    [SerializeField] protected CameraShake specialAttackShake;
     protected bool isDead = false;
     protected bool turn = false;
     protected int attackStat; //easy way to change which stat is used for damage calculations

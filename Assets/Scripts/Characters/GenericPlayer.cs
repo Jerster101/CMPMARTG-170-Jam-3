@@ -46,6 +46,8 @@ public class GenericPlayer : Character
                     selectedBasicTarget = AcquireTarget(basicAttackRange, basicTargetTag, () => BasicAttackTargetingFunction());
                 }
                 else{
+                    if (basicAttackShake != null)
+                        basicAttackShake.StartShake();
                     BasicAttack();
                     usedBasic = true;
                 }
@@ -57,6 +59,8 @@ public class GenericPlayer : Character
                     selectedSpecialTarget = AcquireTarget(specialAttackRange, specialTargetTag, () => SpecialAttackTargetingFunction());
                 }
                 else{
+                    if (specialAttackShake != null)
+                        specialAttackShake.StartShake();
                     SpecialAttack();
                     currSpecialCooldown = specialAttackCooldown;
                 }

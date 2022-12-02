@@ -59,9 +59,9 @@ public class GenericEnemy : Character
                     if (target)
                     {
                         // Debug.Log("Target Found");
+                        if (basicAttackShake != null)
+                            basicAttackShake.StartShake();
                         BasicAttack();
-                        if (Camera.main.gameObject.GetComponent<CameraShake>())
-                            Camera.main.gameObject.GetComponent<CameraShake>().StartShake();
                     }
                     
                     TurnManager.EndTurn();
