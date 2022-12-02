@@ -17,7 +17,7 @@ public class Character : MonoBehaviour
     [SerializeField] protected int health = 5;
     [SerializeField] protected int maxHealth = 5; // Variable used for Moss Dog's healing basic attack. This is mainly used to check for if the max health of an ally would be reached.
     [SerializeField] protected int healing = 2; // Variable used for Moss Dog's healing basic attack
-    [SerializeField] protected float baseAccuracy = 0.8f; //Default chance to hit with attacks    
+    [SerializeField] protected float baseAccuracy = 1.0f; //Default chance to hit with attacks    
     [SerializeField] protected int basicAttackRange = 1;
     [SerializeField] protected int specialAttackRange = 2;
     [SerializeField] protected CameraShake basicAttackShake;
@@ -58,14 +58,12 @@ public class Character : MonoBehaviour
                 walkSound.Play();
         }
 
-        /*
-        if (turn) {
-            if(isDead) {
-                Debug.Log(name + " is dead, ending turn");
-                EndTurn();
-            }
+        
+        if(isDead) {
+            Debug.Log(name + " is dead, ending turn");
+            EndTurn();
+            // fade out 
         }
-        */
         
     }
 
@@ -90,7 +88,7 @@ public class Character : MonoBehaviour
 
     public void TakeDamage(int damage) {
         health -= damage;
-        if(health <= 0) {isDead = true;}
+        if(health <= 0) { Die(); }
 
         switch (name)
         {
@@ -119,6 +117,14 @@ public class Character : MonoBehaviour
         {
             health = maxHealth;
         }
+    }
+
+    void Die()
+    {
+        Debug.Log(name + " died");
+        isDead = true;
+        TurnManager.RemoveUnit(this);
+        gameObject.SetActive(false);
     }
 
     public virtual void BeginTurn()
@@ -161,6 +167,18 @@ public class Character : MonoBehaviour
 
         Debug.Log(name + " ends their turn");
         
+    }
+
+    IEnumerator FadeOut(float fadeTime)
+    {
+        float t = 0.0f;
+        while (t <= fadeTime)
+        {
+            float alpha = t / fadeTime;
+            gameObject.GetComponentInChildren<MeshRenderer>().material.color = new Color(1.0f, 1.0f, 1.0f, alpha);
+            t += Time.deltaTime;
+            yield return null;
+        }
     }
 
 }

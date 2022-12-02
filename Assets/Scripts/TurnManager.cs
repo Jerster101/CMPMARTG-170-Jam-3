@@ -10,11 +10,19 @@ public class TurnManager : MonoBehaviour
 
     static bool hasSortedTurnOrders = false;
 
-    void SortTurnOrders()
+    static void SortTurnOrders()
     {
         foreach (var team in units.Values)
         {
             team.Sort(delegate (Character c1, Character c2) { return c1.turnOrder.CompareTo(c2.turnOrder); });
+        }
+    }
+
+    public static void RemoveUnit(Character unit)
+    {
+        foreach (var team in units.Values)
+        {
+            team.Remove(unit);
         }
     }
 
