@@ -53,6 +53,12 @@ public class Tile : MonoBehaviour
         }
 	}
 
+    public static void ResetAllTiles()
+    {
+        var tiles = FindObjectsOfType<Tile>();
+        foreach (var t in tiles)
+            t.Reset();
+    }
     public void Reset()
     {
         adjacencyList.Clear();

@@ -37,6 +37,14 @@ public class GenericPlayer : Character
 
         if(turn && isFocusCharacter) {
             hud.EnableButtons();
+            // stop move action when it is cancelled
+            if (!hud.moveButtonActive && move.turn && !move.moving)
+            {
+                move.EndTurn();
+                moved = false;
+                Tile.ResetAllTiles();
+            }
+                
             if(hud.moveButtonActive && !moved) {
                 Debug.Log(name + " move mode");
                 move.BeginTurn();
@@ -52,6 +60,7 @@ public class GenericPlayer : Character
                         basicAttackSound.Play();
                     if (basicAttackShake != null)
                         basicAttackShake.StartShake();
+                    Tile.ResetAllTiles();
                     BasicAttack();
                     usedBasic = true;
                 }
@@ -67,6 +76,7 @@ public class GenericPlayer : Character
                         specialAttackSound.Play();
                     if (specialAttackShake != null)
                         specialAttackShake.StartShake();
+                    Tile.ResetAllTiles();
                     SpecialAttack();
                     currSpecialCooldown = specialAttackCooldown;
                 }

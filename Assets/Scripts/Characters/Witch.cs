@@ -35,6 +35,8 @@ public class Witch : GenericPlayer
 
     }
 
+    // commented out because this was bypassing player clicking -- assuming this was for testing
+    /*
     override public bool AcquireTarget(int range, string desiredTarget, TargetingFunction targetingFunction) {
         Collider[] colliders = targetingFunction();
 
@@ -58,6 +60,7 @@ public class Witch : GenericPlayer
             return false;
         }
     }
+    */
 
 
 }

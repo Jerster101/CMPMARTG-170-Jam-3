@@ -102,6 +102,7 @@ public class HUDManager : MonoBehaviour
     }
 
     private void CancelAction() {
+        Tile.ResetAllTiles(); // technically shouldn't happen when it is a move action but oh well
         moveButtonActive = false;
         basicAttackActive = false;
         specialAttackActive = false;
