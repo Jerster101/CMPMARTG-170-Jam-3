@@ -55,6 +55,7 @@ public class GenericPlayer : Character
                 Debug.Log(name + " move mode");
                 move.BeginTurn();
                 moved = true;
+                moveFinished = false;
             }
             else if(hud.basicAttackActive && !usedBasic) {
                // Debug.Log(name + " basic attack mode");
@@ -110,6 +111,7 @@ public class GenericPlayer : Character
             selectedSpecialTarget = false;
             selectedBasicTarget = false;
             moved = false;
+            moveFinished = false;
             usedBasic = false;
             currSpecialCooldown -= 1;
             Debug.Log("reset booleans");
