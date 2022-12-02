@@ -96,13 +96,10 @@ public class Character : MonoBehaviour
                 HUD.UpdateHP(0, health, true);
                 break;
             case "Witch":
-                HUD.UpdateHP(0, health, true);
+                HUD.UpdateHP(1, health, true);
                 break;
             case "Moss Dog":
-                HUD.UpdateHP(0, health, true);
-                break;
-            default:
-                Debug.LogError("bad name in Character.cs");
+                HUD.UpdateHP(2, health, true);
                 break;
         }
     }
@@ -116,6 +113,18 @@ public class Character : MonoBehaviour
         else // else make the new health value equal to the max health
         {
             health = maxHealth;
+        }
+        switch (name)
+        {
+            case "Frog":
+                HUD.UpdateHP(0, health, false);
+                break;
+            case "Witch":
+                HUD.UpdateHP(1, health, false);
+                break;
+            case "Moss Dog":
+                HUD.UpdateHP(2, health, false);
+                break;
         }
     }
 
@@ -138,12 +147,15 @@ public class Character : MonoBehaviour
         {
             case "Frog":
                 HUD.MoveTurnMarker(1);
+                HUD.updateButton("Tongue Pull", 40);
                 break;
             case "Witch":
                 HUD.MoveTurnMarker(2);
+                HUD.updateButton("Spore Burst", 40);
                 break;
             case "Moss Dog":
                 HUD.MoveTurnMarker(3);
+                HUD.updateButton("Moss Ball", 40);
                 break;
             default:
                 Debug.LogError("bad name in Character.cs");

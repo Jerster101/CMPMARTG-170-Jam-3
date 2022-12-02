@@ -6,10 +6,11 @@ using TMPro;
 
 public class HUDManager : MonoBehaviour
 {
-    #pragma warning disable 0162
+#pragma warning disable 0162
     //turn UI debug info on/off
     const bool SHOWDEBUGINFO = false;
 
+    [SerializeField] TMP_Text buttonText;
     [SerializeField] TMP_Text fHealth;
     [SerializeField] TMP_Text wHealth;
     [SerializeField] TMP_Text mHealth;
@@ -53,28 +54,28 @@ public class HUDManager : MonoBehaviour
         }
     }
 
-    private void MoveButton () {
+    private void MoveButton() {
         moveButtonActive = true;
         if (SHOWDEBUGINFO) Debug.Log("MOVE button pressed, is now " + moveButtonActive);
         //onClickSound.Play();
         HideMenu();
     }
 
-    private void BasicButton () {
+    private void BasicButton() {
         basicAttackActive = true;
         if (SHOWDEBUGINFO) Debug.Log("BASIC ATTACK button pressed, is now " + basicAttackActive);
         //onClickSound.Play();
         HideMenu();
     }
 
-    private void SpecialButton () {
+    private void SpecialButton() {
         specialAttackActive = true;
         if (SHOWDEBUGINFO) Debug.Log("SPECIAL ATTACK button pressed, is now " + specialAttackActive);
         //onClickSound.Play();
         HideMenu();
     }
 
-    private void EndButton () {
+    private void EndButton() {
         if (SHOWDEBUGINFO) Debug.Log("END TURN button pressed");
         //onClickSound.Play();
         moveButtonActive = false;
@@ -124,16 +125,16 @@ public class HUDManager : MonoBehaviour
         switch (x)
         {
             case 0:
-                turnMarker.transform.localPosition = new Vector3(-1039, 722, 0);
+                turnMarker.transform.localPosition = new Vector3(-1039, -170, 0);
                 break;
             case 1:
-                turnMarker.transform.localPosition = new Vector3(-864, 722, 0);
+                turnMarker.transform.localPosition = new Vector3(-863, -170, 0);
                 break;
             case 2:
-                turnMarker.transform.localPosition = new Vector3(-684, 722, 0);
+                turnMarker.transform.localPosition = new Vector3(-628, -170, 0);
                 break;
             case 3:
-                turnMarker.transform.localPosition = new Vector3(-498, 722, 0);
+                turnMarker.transform.localPosition = new Vector3(-398, -170, 0);
                 break;
             default:
                 Debug.LogError("Out of bounds error in function MoveTurnMarker().  Int should be no greater than 3, and no lower than 0");
@@ -148,13 +149,18 @@ public class HUDManager : MonoBehaviour
         {
             case 0:
                 fHealth.text = text;
-                FrogAnimate();
+                if (value == 0) fPortrait.sprite = fDamage;
+                else FrogAnimate();
                 break;
             case 1:
                 wHealth.text = text;
+                if (value == 0) wPortrait.sprite = wDamage;
+                else WitchAnimate();
                 break;
             case 2:
                 mHealth.text = text;
+                if (value == 0) mPortrait.sprite = mDamage;
+                else MossAnimate();
                 break;
             default:
                 Debug.LogError("Out of bounds error in function UpdateHP().  Int should be no greater than 2, and no lower than 0");
@@ -162,17 +168,56 @@ public class HUDManager : MonoBehaviour
         }
     }
 
+    public void WinPortraits()
+    {
+        fPortrait.sprite = fHappy;
+        wPortrait.sprite = wHappy;
+        mPortrait.sprite = mHappy;
+    }
+
     private void FrogAnimate()
     {
         fPortrait.sprite = fDamage;
-        StartCoroutine(Wait(1f));
+        StartCoroutine(WaitF(1f));
     }
 
-    IEnumerator Wait(float time)
+    private void WitchAnimate()
+    {
+        wPortrait.sprite = wDamage;
+        StartCoroutine(WaitW(1f));
+    }
+
+    private void MossAnimate()
+    {
+        mPortrait.sprite = mDamage;
+        StartCoroutine(WaitM(1f));
+    }
+
+    public void updateButton(string text, int fontSize = 30)
+    {
+        buttonText.text = text;
+        buttonText.fontSize = fontSize;
+    }
+
+    IEnumerator WaitF(float time)
     {
 
         yield return new WaitForSeconds(time);
         fPortrait.sprite = fNeutral;
+    }
+
+    IEnumerator WaitW(float time)
+    {
+
+        yield return new WaitForSeconds(time);
+        wPortrait.sprite = wNeutral;
+    }
+
+    IEnumerator WaitM(float time)
+    {
+
+        yield return new WaitForSeconds(time);
+        mPortrait.sprite = mNeutral;
     }
 
 }

@@ -36,7 +36,7 @@ public class TurnManager : MonoBehaviour
 
         if (Won())
         {
-            // do stuff
+            FindObjectOfType<HUDManager>().WinPortraits();
         }
         if (Lost())
         {
