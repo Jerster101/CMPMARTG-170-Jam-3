@@ -31,7 +31,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1485095027526104014}
-  m_LocalRotation: {x: 0, y: 0.17403363, z: 0, w: 0.9847397}
+  m_LocalRotation: {x: 0, y: 0.17403486, z: 0, w: 0.9847395}
   m_LocalPosition: {x: -0.5, y: 0.934, z: -5.5}
   m_LocalScale: {x: 0.8, y: 0.8, z: 1}
   m_ConstrainProportionsScale: 0
@@ -39,7 +39,7 @@ Transform:
   - {fileID: 1485095028756136563}
   m_Father: {fileID: 0}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 20.045, z: 0}
 --- !u!33 &1485095027526104010
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -138,12 +138,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   move: {fileID: 0}
   name: Witch
-  magic: 5
-  strength: 5
-  health: 5
-  maxHealth: 5
+  HUD: {fileID: 0}
+  magic: 3
+  strength: 2
+  health: 4
+  maxHealth: 4
   healing: 2
-  baseAccuracy: 0.8
+  baseAccuracy: 1
   basicAttackRange: 1
   specialAttackRange: 3
   basicAttackShake: {fileID: 0}
@@ -151,6 +152,7 @@ MonoBehaviour:
   basicAttackSound: {fileID: 1485095027526104001}
   specialAttackSound: {fileID: 1485095027526104006}
   walkSound: {fileID: 1485095027526104000}
+  turnOrder: 2
   target: {fileID: 0}
   tileTarget: {fileID: 0}
   menu: {fileID: 0}
@@ -468,9 +470,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1485095028756136560}
-  m_LocalRotation: {x: -0, y: -0.37862664, z: -0, w: 0.9255495}
+  m_LocalRotation: {x: -0, y: 0.46178222, z: -0, w: 0.8869934}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 1.1326, y: 1.1326, z: 1.1326}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 2257155066537700679}
@@ -553,7 +555,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e9acc9604a7b2074f9f9efebbce8bc35, type: 2}
+  - {fileID: 2100000, guid: e94daf93cc731ad4cb4e026b6773b505, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

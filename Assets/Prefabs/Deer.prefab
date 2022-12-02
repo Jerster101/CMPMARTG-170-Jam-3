@@ -24,7 +24,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5767519340019522865}
-  m_LocalRotation: {x: -0, y: 0.59797746, z: -0, w: 0.801513}
+  m_LocalRotation: {x: -0, y: 0.61083347, z: -0, w: 0.79175913}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -67,7 +67,7 @@ GameObject:
   - component: {fileID: 2096725929}
   m_Layer: 0
   m_Name: Deer
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -81,7 +81,7 @@ Transform:
   m_GameObject: {fileID: 5767519340237139858}
   m_LocalRotation: {x: 0, y: 0.9364826, z: 0, w: 0.35071415}
   m_LocalPosition: {x: -0.5, y: 0.796, z: 5.5}
-  m_LocalScale: {x: 0.8000002, y: 0.8, z: 1}
+  m_LocalScale: {x: 1.2, y: 2, z: 1.2}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5767519340019522866}
@@ -186,12 +186,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   move: {fileID: 0}
   name: Deer
+  HUD: {fileID: 0}
   magic: 5
-  strength: 5
-  health: 5
+  strength: 3
+  health: 4
   maxHealth: 5
   healing: 2
-  baseAccuracy: 0.8
+  baseAccuracy: 1
   basicAttackRange: 1
   specialAttackRange: 2
   basicAttackShake: {fileID: 8425745420322395359}
@@ -199,6 +200,7 @@ MonoBehaviour:
   basicAttackSound: {fileID: 2096725928}
   specialAttackSound: {fileID: 0}
   walkSound: {fileID: 2096725929}
+  turnOrder: -1
   target: {fileID: 0}
   tileTarget: {fileID: 0}
 --- !u!114 &8425745420322395359

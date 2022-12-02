@@ -133,7 +133,7 @@ public class Character : MonoBehaviour
         Debug.Log(name + " died");
         isDead = true;
         TurnManager.RemoveUnit(this);
-        gameObject.SetActive(false);
+        gameObject.SetActive(false); // can probanbly destroy gameObject instead honestly, though it isn't a big deal with so few enemies right now
     }
 
     public virtual void BeginTurn()
