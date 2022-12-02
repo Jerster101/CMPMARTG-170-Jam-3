@@ -181,7 +181,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Game Title
+  m_text: Terrestria
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: c7b15f675b231504aa0325238afc9658, type: 2}
   m_sharedMaterial: {fileID: -7491314145063281496, guid: c7b15f675b231504aa0325238afc9658, type: 2}
