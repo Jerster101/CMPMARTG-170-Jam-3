@@ -29,6 +29,7 @@ public class HUDManager : MonoBehaviour
     [SerializeField] Sprite mHappy;
 
     [SerializeField] GameObject turnMarker;
+    [SerializeField] GameObject pauseMenu;
     [SerializeField] GameObject HUD;
     [SerializeField] Button moveButton, basicButton, specialButton, endTurnButton;
     //[SerializeField]
@@ -51,6 +52,17 @@ public class HUDManager : MonoBehaviour
         if (Input.GetKey(KeyCode.Mouse1) && !menuOpen)
         {
             CancelAction();
+        }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (pauseMenu.activeInHierarchy)
+            {
+                pauseMenu.SetActive(false);
+            }
+            else
+            {
+                pauseMenu.SetActive(true);
+            }
         }
     }
 
@@ -142,25 +154,25 @@ public class HUDManager : MonoBehaviour
         }
     }
 
-    public void UpdateHP(int character, int value, bool animate)
+    public void UpdateHP(int character, int maxValue, int value, bool animate)
     {
-        string text = "HP: " + value + "/5";
+        string text = "HP: " + value + "/" + maxValue;
         switch (character)
         {
             case 0:
                 fHealth.text = text;
                 if (value == 0) fPortrait.sprite = fDamage;
-                else FrogAnimate();
+                else if (animate) FrogAnimate();
                 break;
             case 1:
                 wHealth.text = text;
                 if (value == 0) wPortrait.sprite = wDamage;
-                else WitchAnimate();
+                else if (animate) WitchAnimate();
                 break;
             case 2:
                 mHealth.text = text;
                 if (value == 0) mPortrait.sprite = mDamage;
-                else MossAnimate();
+                else if (animate) MossAnimate();
                 break;
             default:
                 Debug.LogError("Out of bounds error in function UpdateHP().  Int should be no greater than 2, and no lower than 0");

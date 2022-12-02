@@ -93,13 +93,13 @@ public class Character : MonoBehaviour
         switch (name)
         {
             case "Frog":
-                HUD.UpdateHP(0, health, true);
+                HUD.UpdateHP(0, maxHealth, health, true);
                 break;
             case "Witch":
-                HUD.UpdateHP(1, health, true);
+                HUD.UpdateHP(1, maxHealth, health, true);
                 break;
             case "Moss Dog":
-                HUD.UpdateHP(2, health, true);
+                HUD.UpdateHP(2, maxHealth, health, true);
                 break;
         }
     }
@@ -117,13 +117,13 @@ public class Character : MonoBehaviour
         switch (name)
         {
             case "Frog":
-                HUD.UpdateHP(0, health, false);
+                HUD.UpdateHP(0, maxHealth, health, false);
                 break;
             case "Witch":
-                HUD.UpdateHP(1, health, false);
+                HUD.UpdateHP(1, maxHealth, health, false);
                 break;
             case "Moss Dog":
-                HUD.UpdateHP(2, health, false);
+                HUD.UpdateHP(2, maxHealth, health, false);
                 break;
         }
     }

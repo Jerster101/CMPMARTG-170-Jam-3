@@ -5,18 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class MenuManager : MonoBehaviour
 {
-    public GameObject pauseMenu;
-
-    public void Update() {
-        if (Input.GetKeyDown(KeyCode.P)) {
-            if (pauseMenu.activeInHierarchy) {
-                pauseMenu.SetActive(false);
-            }
-            else {
-                pauseMenu.SetActive(true);
-            }
-        }
-    }
 
     public void EndGame() {
         SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
