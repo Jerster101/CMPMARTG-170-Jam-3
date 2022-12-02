@@ -11,6 +11,7 @@ public class Character : MonoBehaviour
     public string name = "Default";
 
     //stats - we can change this later
+    [SerializeField] private HUDManager HUD;
     [SerializeField] protected int magic = 5;
     [SerializeField] protected int strength = 5;
     [SerializeField] protected int health = 5;
@@ -90,6 +91,22 @@ public class Character : MonoBehaviour
     public void TakeDamage(int damage) {
         health -= damage;
         if(health <= 0) {isDead = true;}
+
+        switch (name)
+        {
+            case "Frog":
+                HUD.UpdateHP(0, health, true);
+                break;
+            case "Witch":
+                HUD.UpdateHP(0, health, true);
+                break;
+            case "Moss Dog":
+                HUD.UpdateHP(0, health, true);
+                break;
+            default:
+                Debug.LogError("bad name in Character.cs");
+                break;
+        }
     }
 
     public void HealDamage(int healing)
@@ -111,6 +128,22 @@ public class Character : MonoBehaviour
             move.BeginTurn();
         }
 
+        switch (name)
+        {
+            case "Frog":
+                HUD.MoveTurnMarker(1);
+                break;
+            case "Witch":
+                HUD.MoveTurnMarker(2);
+                break;
+            case "Moss Dog":
+                HUD.MoveTurnMarker(3);
+                break;
+            default:
+                Debug.LogError("bad name in Character.cs");
+                break;
+        }
+
         Debug.Log(name + " begins their turn");
         
     }
@@ -119,6 +152,11 @@ public class Character : MonoBehaviour
     {
         if(turn) {
             turn = false;  
+        }
+
+        if (name == "Moss Dog")
+        {
+            HUD.MoveTurnMarker(0);
         }
 
         Debug.Log(name + " ends their turn");

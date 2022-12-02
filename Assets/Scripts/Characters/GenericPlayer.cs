@@ -119,6 +119,7 @@ public class GenericPlayer : Character
             }
 
         }
+        base.BeginTurn();
     }
 
     virtual protected Collider[] BasicAttackTargetingFunction()

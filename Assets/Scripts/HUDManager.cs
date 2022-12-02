@@ -9,18 +9,32 @@ public class HUDManager : MonoBehaviour
     #pragma warning disable 0162
     //turn UI debug info on/off
     const bool SHOWDEBUGINFO = false;
-    
 
-    [SerializeField]
-    GameObject HUD;
-    [SerializeField]
-    Button moveButton, basicButton, specialButton, secondSpecialButton, endTurnButton;
+    [SerializeField] TMP_Text fHealth;
+    [SerializeField] TMP_Text wHealth;
+    [SerializeField] TMP_Text mHealth;
+    [SerializeField] Image fPortrait;
+    [SerializeField] Image wPortrait;
+    [SerializeField] Image mPortrait;
+
+    [SerializeField] Sprite fNeutral;
+    [SerializeField] Sprite fDamage;
+    [SerializeField] Sprite fHappy;
+    [SerializeField] Sprite wNeutral;
+    [SerializeField] Sprite wDamage;
+    [SerializeField] Sprite wHappy;
+    [SerializeField] Sprite mNeutral;
+    [SerializeField] Sprite mDamage;
+    [SerializeField] Sprite mHappy;
+
+    [SerializeField] GameObject turnMarker;
+    [SerializeField] GameObject HUD;
+    [SerializeField] Button moveButton, basicButton, specialButton, endTurnButton;
     //[SerializeField]
     //AudioSource onClickSound;
     public bool moveButtonActive = false;
     public bool basicAttackActive = false;
     public bool specialAttackActive = false;
-    public bool secondSpecialAttackActive = false;
 
     bool menuOpen = true;
 
@@ -28,7 +42,6 @@ public class HUDManager : MonoBehaviour
         moveButton.onClick.AddListener(MoveButton);
         basicButton.onClick.AddListener(BasicButton);
         specialButton.onClick.AddListener(SpecialButton);
-        secondSpecialButton.onClick.AddListener(SecondSpecialButton);
         endTurnButton.onClick.AddListener(EndButton);
     }
 
@@ -61,19 +74,12 @@ public class HUDManager : MonoBehaviour
         HideMenu();
     }
 
-    private void SecondSpecialButton () {
-        secondSpecialAttackActive = true;
-        if (SHOWDEBUGINFO) Debug.Log("SECOND SPECIAL ATTACK button pressed, is now " + secondSpecialAttackActive);
-        HideMenu();
-    }
-
     private void EndButton () {
         if (SHOWDEBUGINFO) Debug.Log("END TURN button pressed");
         //onClickSound.Play();
         moveButtonActive = false;
         basicAttackActive = false;
         specialAttackActive = false;
-        secondSpecialAttackActive = false;
         TurnManager.EndTurn();
     }
 
@@ -82,7 +88,6 @@ public class HUDManager : MonoBehaviour
         moveButton.interactable = false;
         basicButton.interactable = false;
         specialButton.interactable = false;
-        secondSpecialButton.interactable = false;
         endTurnButton.interactable = false;
     }
 
@@ -91,7 +96,6 @@ public class HUDManager : MonoBehaviour
         moveButton.interactable = true;
         basicButton.interactable = true;
         specialButton.interactable = true;
-        secondSpecialButton.interactable = true;
         endTurnButton.interactable = true;
     }
 
@@ -106,7 +110,6 @@ public class HUDManager : MonoBehaviour
         moveButtonActive = false;
         basicAttackActive = false;
         specialAttackActive = false;
-        secondSpecialAttackActive = false;
         if (SHOWDEBUGINFO) Debug.Log("Action canceled, all values set to false");
         ShowMenu();
     }
@@ -115,6 +118,61 @@ public class HUDManager : MonoBehaviour
         menuOpen = true;
         HUD.SetActive(true);
         if (SHOWDEBUGINFO) Debug.Log("HUD shown");
+    }
+
+    public void MoveTurnMarker(int x) {
+        switch (x)
+        {
+            case 0:
+                turnMarker.transform.localPosition = new Vector3(-1039, 722, 0);
+                break;
+            case 1:
+                turnMarker.transform.localPosition = new Vector3(-864, 722, 0);
+                break;
+            case 2:
+                turnMarker.transform.localPosition = new Vector3(-684, 722, 0);
+                break;
+            case 3:
+                turnMarker.transform.localPosition = new Vector3(-498, 722, 0);
+                break;
+            default:
+                Debug.LogError("Out of bounds error in function MoveTurnMarker().  Int should be no greater than 3, and no lower than 0");
+                break;
+        }
+    }
+
+    public void UpdateHP(int character, int value, bool animate)
+    {
+        string text = "HP: " + value + "/5";
+        switch (character)
+        {
+            case 0:
+                fHealth.text = text;
+                FrogAnimate();
+                break;
+            case 1:
+                wHealth.text = text;
+                break;
+            case 2:
+                mHealth.text = text;
+                break;
+            default:
+                Debug.LogError("Out of bounds error in function UpdateHP().  Int should be no greater than 2, and no lower than 0");
+                break;
+        }
+    }
+
+    private void FrogAnimate()
+    {
+        fPortrait.sprite = fDamage;
+        StartCoroutine(Wait(1f));
+    }
+
+    IEnumerator Wait(float time)
+    {
+
+        yield return new WaitForSeconds(time);
+        fPortrait.sprite = fNeutral;
     }
 
 }
