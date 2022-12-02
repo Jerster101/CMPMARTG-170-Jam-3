@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+using System.Linq;
+
 public class Witch : GenericPlayer
 {
     private List<Character> aoeTargets = new List<Character>();
@@ -49,18 +51,29 @@ public class Witch : GenericPlayer
             }
 
         }
+
         if(Input.GetMouseButtonUp(0)){
-            if(aoeTargets.Count > 0) {
-                return true;
-            }
-            else{
-                Debug.Log("no targets in aoe");
-                return false;
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+
+            RaycastHit hit;
+            if (Physics.Raycast(ray, out hit))
+            {
+                if (colliders.Contains(hit.collider))
+                {
+                    if (aoeTargets.Count > 0)
+                    {
+                        return true;
+                    }
+                    else
+                    {
+                        Debug.Log("no targets in aoe");
+                        return false;
+                    }
+                }
             }
         }
-        else {
-            return false;
-        }
+
+        return false;
     }
     
 
