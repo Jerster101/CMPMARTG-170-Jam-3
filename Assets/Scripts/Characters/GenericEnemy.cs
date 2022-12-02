@@ -20,6 +20,8 @@ public class GenericEnemy : Character
     // Update is called once per frame
     protected override void Update()
     {
+        base.Update();
+
         if(turn) {
             // if haven't moved, then move
             if(!moved) {
@@ -59,6 +61,8 @@ public class GenericEnemy : Character
                     if (target)
                     {
                         // Debug.Log("Target Found");
+                        if (basicAttackSound != null)
+                            basicAttackSound.Play();
                         if (basicAttackShake != null)
                             basicAttackShake.StartShake();
                         BasicAttack();

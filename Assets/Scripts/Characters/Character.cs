@@ -21,6 +21,9 @@ public class Character : MonoBehaviour
     [SerializeField] protected int specialAttackRange = 2;
     [SerializeField] protected CameraShake basicAttackShake;
     [SerializeField] protected CameraShake specialAttackShake;
+    [SerializeField] protected AudioSource basicAttackSound;
+    [SerializeField] protected AudioSource specialAttackSound;
+    [SerializeField] protected AudioSource walkSound;
     protected bool isDead = false;
     protected bool turn = false;
     protected int attackStat; //easy way to change which stat is used for damage calculations
@@ -47,12 +50,20 @@ public class Character : MonoBehaviour
     // Update is called once per frame
     protected virtual void Update()
     {
-        if(turn) {
+        if (move.moving)
+        {
+            if (!walkSound.isPlaying)
+                walkSound.Play();
+        }
+
+        /*
+        if (turn) {
             if(isDead) {
                 Debug.Log(name + " is dead, ending turn");
                 EndTurn();
             }
         }
+        */
         
     }
 

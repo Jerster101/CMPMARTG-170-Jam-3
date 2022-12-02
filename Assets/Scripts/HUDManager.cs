@@ -15,6 +15,8 @@ public class HUDManager : MonoBehaviour
     GameObject HUD;
     [SerializeField]
     Button moveButton, basicButton, specialButton, secondSpecialButton, endTurnButton;
+    //[SerializeField]
+    //AudioSource onClickSound;
     public bool moveButtonActive = false;
     public bool basicAttackActive = false;
     public bool specialAttackActive = false;
@@ -41,18 +43,21 @@ public class HUDManager : MonoBehaviour
     private void MoveButton () {
         moveButtonActive = true;
         if (SHOWDEBUGINFO) Debug.Log("MOVE button pressed, is now " + moveButtonActive);
+        //onClickSound.Play();
         HideMenu();
     }
 
     private void BasicButton () {
         basicAttackActive = true;
         if (SHOWDEBUGINFO) Debug.Log("BASIC ATTACK button pressed, is now " + basicAttackActive);
+        //onClickSound.Play();
         HideMenu();
     }
 
     private void SpecialButton () {
         specialAttackActive = true;
         if (SHOWDEBUGINFO) Debug.Log("SPECIAL ATTACK button pressed, is now " + specialAttackActive);
+        //onClickSound.Play();
         HideMenu();
     }
 
@@ -64,6 +69,7 @@ public class HUDManager : MonoBehaviour
 
     private void EndButton () {
         if (SHOWDEBUGINFO) Debug.Log("END TURN button pressed");
+        //onClickSound.Play();
         moveButtonActive = false;
         basicAttackActive = false;
         specialAttackActive = false;
