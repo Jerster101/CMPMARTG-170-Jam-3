@@ -71,6 +71,24 @@ public class HUDManager : MonoBehaviour
         TurnManager.EndTurn();
     }
 
+    public void DisableButtons()
+    {
+        moveButton.interactable = false;
+        basicButton.interactable = false;
+        specialButton.interactable = false;
+        secondSpecialButton.interactable = false;
+        endTurnButton.interactable = false;
+    }
+
+    public void EnableButtons()
+    {
+        moveButton.interactable = true;
+        basicButton.interactable = true;
+        specialButton.interactable = true;
+        secondSpecialButton.interactable = true;
+        endTurnButton.interactable = true;
+    }
+
     private void HideMenu() {
         menuOpen = false;
         HUD.SetActive(false);
@@ -86,7 +104,7 @@ public class HUDManager : MonoBehaviour
         ShowMenu();
     }
 
-    private void ShowMenu() {
+    public void ShowMenu() {
         menuOpen = true;
         HUD.SetActive(true);
         if (SHOWDEBUGINFO) Debug.Log("HUD shown");

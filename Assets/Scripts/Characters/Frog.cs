@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class Frog : GenericPlayer
 {
-    private bool selectingGrabTile;
-    private bool selectedGrabTile;
-    private Character grabTarget;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,16 +15,6 @@ public class Frog : GenericPlayer
     void Update()
     {
         base.Update();
-        if(selectingGrabTile) {
-            if(!selectedGrabTile) {
-                Debug.Log("Selecting Grab Tile");
-                selectedGrabTile = AcquireTarget(specialAttackRange, "Tile", () => SpecialAttackTargetingFunction());
-            }
-            else{
-                Debug.Log("Moving to tile");
-                grabTarget.move.MoveToTile(tileTarget);
-            }
-        }
     }
 
     override protected Collider[] SpecialAttackTargetingFunction() {
@@ -38,9 +25,20 @@ public class Frog : GenericPlayer
     }
 
     override protected void SpecialAttack() {
-        Debug.Log("Executed frog specialattack");
-        selectingGrabTile = true;
-        grabTarget = target;
+        Vector3 frogPos = transform.position;
+        Vector3 upTile = new Vector3 (frogPos.x, frogPos.y, frogPos.z + 1f);
+        Vector3 downTile = new Vector3 (frogPos.x, frogPos.y, frogPos.z - 1f);
+        Vector3 leftTile = new Vector3 (frogPos.x + 1f, frogPos.y, frogPos.z);
+        Vector3 rightTile = new Vector3 (frogPos.x - 1f, frogPos.y, frogPos.z);
+        Vector3[] adjTiles = new Vector3[] {upTile, leftTile, downTile, rightTile};
 
+        Vector3 lowest = upTile;
+
+        foreach(Vector3 tile in adjTiles) {
+            if(Vector3.Distance(transform.position, tile) <= Vector3.Distance(transform.position, lowest)) {
+                lowest = tile;
+            }
+        }
+        target.transform.position = lowest;
     }
 }
