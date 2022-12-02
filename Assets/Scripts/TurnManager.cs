@@ -8,8 +8,18 @@ public class TurnManager : MonoBehaviour
     static Queue<string> turnKey = new Queue<string>();
     static Queue<Character> turnTeam = new Queue<Character>();
 
-	// Use this for initialization
-	void Start () 
+    static bool hasSortedTurnOrders = false;
+
+    void SortTurnOrders()
+    {
+        foreach (var team in units.Values)
+        {
+            team.Sort(delegate (Character c1, Character c2) { return c1.turnOrder.CompareTo(c2.turnOrder); });
+        }
+    }
+
+    // Use this for initialization
+    void Start () 
 	{
 		
 	}
@@ -17,6 +27,9 @@ public class TurnManager : MonoBehaviour
 	// Update is called once per frame
 	void Update () 
 	{
+        if (!hasSortedTurnOrders)
+            SortTurnOrders();
+
         if (turnTeam.Count == 0)
         {
             InitTeamTurnQueue();

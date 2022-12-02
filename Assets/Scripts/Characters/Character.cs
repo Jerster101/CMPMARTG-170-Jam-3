@@ -24,8 +24,9 @@ public class Character : MonoBehaviour
     [SerializeField] protected AudioSource basicAttackSound;
     [SerializeField] protected AudioSource specialAttackSound;
     [SerializeField] protected AudioSource walkSound;
+    [SerializeField] public int turnOrder = -1;
     protected bool isDead = false;
-    public bool turn = false;
+    protected bool turn = false;
     protected int attackStat; //easy way to change which stat is used for damage calculations
 
     public Character target; //use this to store other characters to target with attacks

@@ -18,6 +18,7 @@ public class GenericPlayer : Character
     private bool selectedBasicTarget = false;
     private bool usedBasic = false;
     private bool moved = false;
+    private bool moveFinished = false; // just for showing the menu when done moving
 
     protected void PCInit() {
         Init();
@@ -44,6 +45,11 @@ public class GenericPlayer : Character
                 moved = false;
                 Tile.ResetAllTiles();
             }
+            if (moved && !move.turn && !moveFinished)
+            {
+                moveFinished = true;
+                StartCoroutine(WaitAndShowMenu(0.1f));
+            }
                 
             if(hud.moveButtonActive && !moved) {
                 Debug.Log(name + " move mode");
@@ -56,6 +62,7 @@ public class GenericPlayer : Character
                     selectedBasicTarget = AcquireTarget(basicAttackRange, basicTargetTag, () => BasicAttackTargetingFunction());
                 }
                 else{
+                    StartCoroutine(WaitAndShowMenu(0.4f));
                     if (basicAttackSound != null)
                         basicAttackSound.Play();
                     if (basicAttackShake != null)
@@ -72,6 +79,7 @@ public class GenericPlayer : Character
                     selectedSpecialTarget = AcquireTarget(specialAttackRange, specialTargetTag, () => SpecialAttackTargetingFunction());
                 }
                 else{
+                    StartCoroutine(WaitAndShowMenu(0.4f));
                     if (specialAttackSound != null)
                         specialAttackSound.Play();
                     if (specialAttackShake != null)
@@ -173,5 +181,12 @@ public class GenericPlayer : Character
         }
 
         return false;
+    }
+
+    IEnumerator WaitAndShowMenu(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+
+        hud.ShowMenu();
     }
 }
