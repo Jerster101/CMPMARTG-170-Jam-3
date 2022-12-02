@@ -145,4 +145,15 @@ public class GenericPlayer : Character
 
         return false;
     }
+
+    protected void TurnRefresh() // function used for refreshing Moss Dog's chosen ally
+    {
+        Debug.Log("Refreshing actions");
+        target.turn = true;
+        target.moved = false;
+        target.usedBasic = false;
+        target.currentSpecialCooldown = 0;
+        target.selectedBasicTarget = false;
+        target.selectedSpecialTarget = false;
+    }
 }
