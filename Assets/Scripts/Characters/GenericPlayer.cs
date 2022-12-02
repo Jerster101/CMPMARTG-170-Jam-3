@@ -35,7 +35,7 @@ public class GenericPlayer : Character
     {
         base.Update();
 
-        if(turn && isFocusCharacter) {
+        if(turn) { //  && isFocusCharacter
             hud.EnableButtons();
             // stop move action when it is cancelled
             if (!hud.moveButtonActive && move.turn && !move.moving)
@@ -82,7 +82,7 @@ public class GenericPlayer : Character
                 }
             }
         }
-        if (!turn) hud.DisableButtons();
+        // if (!turn) hud.DisableButtons();
         
     }
 

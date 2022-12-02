@@ -25,7 +25,12 @@ public class TurnManager : MonoBehaviour
 
     static void InitTeamTurnQueue()
     {
-        List<Character> teamList = units[turnKey.Peek()];
+        string teamTag = turnKey.Peek();
+        List<Character> teamList = units[teamTag];
+
+        // disable hud while enemies
+        if (teamTag != "Player")
+            FindObjectOfType<HUDManager>().DisableButtons();
 
         foreach (Character unit in teamList)
         {
