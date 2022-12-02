@@ -35,8 +35,6 @@ public class Witch : GenericPlayer
 
     }
 
-    // commented out because this was bypassing player clicking -- assuming this was for testing
-    /*
     override public bool AcquireTarget(int range, string desiredTarget, TargetingFunction targetingFunction) {
         Collider[] colliders = targetingFunction();
 
@@ -51,16 +49,20 @@ public class Witch : GenericPlayer
             }
 
         }
-
-        if(aoeTargets.Count > 0) {
-            return true;
+        if(Input.GetMouseButtonUp(0)){
+            if(aoeTargets.Count > 0) {
+                return true;
+            }
+            else{
+                Debug.Log("no targets in aoe");
+                return false;
+            }
         }
-        else{
-            Debug.Log("no targets in aoe");
+        else {
             return false;
         }
     }
-    */
+    
 
 
 }
